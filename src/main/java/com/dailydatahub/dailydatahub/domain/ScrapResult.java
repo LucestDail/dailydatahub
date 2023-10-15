@@ -22,13 +22,17 @@ public class ScrapResult extends BaseTimeEntity{
 	private int jobOrder;
 
 	@Column(columnDefinition = "text", nullable = false)
+	private String scrapLink;
+
+	@Column(columnDefinition = "text", nullable = false)
 	private String result;
 
 	@Builder
-	public ScrapResult(Long seq, Long scrapSeq, int jobOrder, String result) {
+	public ScrapResult(Long seq, Long scrapSeq, int jobOrder, String scrapLink, String result) {
 		this.seq = seq;
 		this.scrapSeq = scrapSeq;
 		this.jobOrder = jobOrder;
+		this.scrapLink = scrapLink;
 		this.result = result;
 	}
 
@@ -36,6 +40,7 @@ public class ScrapResult extends BaseTimeEntity{
         return ScrapResult.builder()
 				.scrapSeq(scrapResult.getScrapSeq())
 				.jobOrder(scrapResult.getJobOrder())
+				.scrapLink(scrapResult.getScrapLink())
 				.result(scrapResult.getResult())
 				.build();
     }
@@ -45,6 +50,7 @@ public class ScrapResult extends BaseTimeEntity{
 				.seq(scrapResult.getSeq())
 				.scrapSeq(scrapResult.getScrapSeq())
 				.jobOrder(scrapResult.getJobOrder())
+				.scrapLink(scrapResult.getScrapLink())
 				.result(scrapResult.getResult())
 				.build();
     }

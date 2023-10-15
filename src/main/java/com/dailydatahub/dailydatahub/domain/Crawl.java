@@ -21,17 +21,22 @@ public class Crawl extends BaseTimeEntity{
 	@Column(columnDefinition = "text", nullable = false)
 	private String info;
 
+	@Column(columnDefinition = "text", nullable = false)
+	private String runCycle;
+
 	@Builder
-	public Crawl(Long seq, String categoryCode, String info) {
+	public Crawl(Long seq, String categoryCode, String info, String runCycle) {
 		this.seq = seq;
 		this.categoryCode = categoryCode;
 		this.info = info;
+		this.runCycle = runCycle;
 	}
 
 	public Crawl toEntity(Crawl crawl) {
         return Crawl.builder()
 				.categoryCode(crawl.getCategoryCode())
 				.info(crawl.getInfo())
+				.runCycle(crawl.getRunCycle())
 				.build();
     }
 
@@ -40,6 +45,7 @@ public class Crawl extends BaseTimeEntity{
 				.seq(crawl.getSeq())
 				.categoryCode(crawl.getCategoryCode())
 				.info(crawl.getInfo())
+				.runCycle(crawl.getRunCycle())
 				.build();
     }
 }

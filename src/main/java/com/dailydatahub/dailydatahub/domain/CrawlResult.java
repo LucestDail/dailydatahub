@@ -21,13 +21,17 @@ public class CrawlResult extends BaseTimeEntity{
 	private int jobOrder;
 
 	@Column(columnDefinition = "text", nullable = false)
+	private String crawlLink;
+
+	@Column(columnDefinition = "text", nullable = false)
 	private String result;
 
 	@Builder
-	public CrawlResult(Long seq, Long crawlSeq, int jobOrder, String result) {
+	public CrawlResult(Long seq, Long crawlSeq, int jobOrder, String crawlLink, String result) {
 		this.seq = seq;
 		this.crawlSeq = crawlSeq;
 		this.jobOrder = jobOrder;
+		this.crawlLink = crawlLink;
 		this.result = result;
 	}
 
@@ -35,6 +39,7 @@ public class CrawlResult extends BaseTimeEntity{
         return CrawlResult.builder()
 				.crawlSeq(crawlResult.getCrawlSeq())
 				.jobOrder(crawlResult.getJobOrder())
+				.crawlLink(crawlResult.getCrawlLink())
 				.result(crawlResult.getResult())
 				.build();
     }
@@ -44,6 +49,7 @@ public class CrawlResult extends BaseTimeEntity{
 				.seq(crawlResult.getSeq())
 				.crawlSeq(crawlResult.getCrawlSeq())
 				.jobOrder(crawlResult.getJobOrder())
+				.crawlLink(crawlResult.getCrawlLink())
 				.result(crawlResult.getResult())
 				.build();
     }

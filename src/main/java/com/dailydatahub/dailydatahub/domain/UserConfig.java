@@ -15,31 +15,43 @@ public class UserConfig extends BaseTimeEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long seq;
 
-	@Column(columnDefinition = "text", nullable = false , length = 500)
-	private String configType;
+	@Column(columnDefinition = "bigint", nullable = false)
+	private Long userSeq;
 
 	@Column(columnDefinition = "text", nullable = false , length = 500)
-	private String configTarget;
+	private String categoryCode;
+
+	@Column(columnDefinition = "text", nullable = false , length = 500)
+	private String morphs;
+
+	@Column(columnDefinition = "text", nullable = false , length = 500)
+	private String info;
 
 	@Builder
-	public UserConfig(Long seq, String configType, String configTarget) {
+	public UserConfig(Long seq, Long userSeq, String categoryCode, String morphs, String info) {
 		this.seq = seq;
-		this.configType = configType;
-		this.configTarget = configTarget;
+		this.userSeq = userSeq;
+		this.categoryCode = categoryCode;
+		this.morphs = morphs;
+		this.info = info;
 	}
 
 	public UserConfig toEntity(UserConfig userConfig) {
         return UserConfig.builder()
-				.configType(userConfig.getConfigType())
-				.configTarget(userConfig.getConfigTarget())
+				.userSeq(userConfig.getUserSeq())
+				.categoryCode(userConfig.getCategoryCode())
+				.morphs(userConfig.getMorphs())
+				.info(userConfig.getInfo())
 				.build();
     }
 
 	public UserConfig toEntityUpdate(UserConfig userConfig) {
         return UserConfig.builder()
 				.seq(userConfig.getSeq())
-				.configType(userConfig.getConfigType())
-				.configTarget(userConfig.getConfigTarget())
+				.userSeq(userConfig.getUserSeq())
+				.categoryCode(userConfig.getCategoryCode())
+				.morphs(userConfig.getMorphs())
+				.info(userConfig.getInfo())
 				.build();
     }
 }

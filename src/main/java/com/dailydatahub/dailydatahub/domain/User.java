@@ -24,21 +24,21 @@ public class User extends BaseTimeEntity {
 
 	@Column(columnDefinition = "text", nullable = false , length = 500)
 	private String name;
-
-	@Column(columnDefinition = "text", nullable = false , length = 500)
-	private String teamSeq;
 	
 	@Column(columnDefinition = "text", nullable = false , length = 500)
 	private String info;
 
+	@Column(columnDefinition = "text", nullable = false , length = 500)
+	private String email;
+
 	@Builder
-	public User(Long seq, String id, String password, String name, String teamSeq, String info) {
+	public User(Long seq, String id, String password, String name, String info, String email) {
 		this.seq = seq;
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.teamSeq = teamSeq;
 		this.info = info;
+		this.email = email;
 	}
 
 	public User toEntity(User user) {
@@ -46,8 +46,8 @@ public class User extends BaseTimeEntity {
 				.id(user.getId())
 				.password(user.getPassword())
 				.name(user.getName())
-				.teamSeq(user.getTeamSeq())
 				.info(user.getInfo())
+				.email(user.getEmail())
 				.build();
     }
 
@@ -57,8 +57,8 @@ public class User extends BaseTimeEntity {
 				.id(user.getId())
 				.password(user.getPassword())
 				.name(user.getName())
-				.teamSeq(user.getTeamSeq())
 				.info(user.getInfo())
+				.email(user.getEmail())
 				.build();
     }
 }

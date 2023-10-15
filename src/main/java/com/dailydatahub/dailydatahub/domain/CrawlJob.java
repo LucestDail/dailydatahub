@@ -28,27 +28,27 @@ public class CrawlJob extends BaseTimeEntity{
 	private String domainUri;
 
     @Column(columnDefinition = "text", nullable = false)
-	private String queryString;
-	
-    @Column(columnDefinition = "text", nullable = false)
 	private String crawlType;
 
     @Column(columnDefinition = "text", nullable = false)
 	private String linkTarget;
 
     @Column(columnDefinition = "text", nullable = false)
+	private String queryString;
+
+    @Column(columnDefinition = "text", nullable = false)
 	private String info;
 
     @Builder
-	public CrawlJob(Long seq, Long crawlSeq, int jobOrder, String domainUrl, String domainUri, String queyString, String crawlType, String linkTarget, String info) {
+	public CrawlJob(Long seq, Long crawlSeq, int jobOrder, String domainUrl, String domainUri, String crawlType, String linkTarget, String queryString, String info) {
 		this.seq = seq;
         this.crawlSeq = crawlSeq;
         this.jobOrder = jobOrder;
         this.domainUrl = domainUrl;
         this.domainUri = domainUri;
-        this.queryString = queyString;
         this.crawlType = crawlType;
         this.linkTarget = linkTarget;
+        this.queryString = queryString;
         this.info = info;
 	}
 
@@ -58,9 +58,9 @@ public class CrawlJob extends BaseTimeEntity{
                 .jobOrder(crawlJob.getJobOrder())
                 .domainUrl(crawlJob.getDomainUrl())
                 .domainUri(crawlJob.getDomainUri())
-                .queyString(crawlJob.getQueryString())
                 .crawlType(crawlJob.getCrawlType())
                 .linkTarget(crawlJob.getLinkTarget())
+                .queryString(crawlJob.getQueryString())
                 .info(crawlJob.getInfo())
 				.build();
     }
@@ -72,9 +72,9 @@ public class CrawlJob extends BaseTimeEntity{
                 .jobOrder(crawlJob.getJobOrder())
                 .domainUrl(crawlJob.getDomainUrl())
                 .domainUri(crawlJob.getDomainUri())
-                .queyString(crawlJob.getQueryString())
                 .crawlType(crawlJob.getCrawlType())
                 .linkTarget(crawlJob.getLinkTarget())
+                .queryString(crawlJob.getQueryString())
                 .info(crawlJob.getInfo())
 				.build();
     }

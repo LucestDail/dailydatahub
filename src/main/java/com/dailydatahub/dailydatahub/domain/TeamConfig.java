@@ -15,31 +15,31 @@ public class TeamConfig extends BaseTimeEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long seq;
 
-	@Column(columnDefinition = "text", nullable = false , length = 500)
-	private String configType;
+	@Column(columnDefinition = "bigint", nullable = false)
+	private Long teamSeq;
 
 	@Column(columnDefinition = "text", nullable = false , length = 500)
-	private String configTarget;
+	private String morphs;
 
 	@Builder
-	public TeamConfig(Long seq, String configType, String configTarget) {
+	public TeamConfig(Long seq, Long teamSeq, String morphs) {
 		this.seq = seq;
-		this.configType = configType;
-		this.configTarget = configTarget;
+		this.teamSeq = teamSeq;
+		this.morphs = morphs;
 	}
 
 	public TeamConfig toEntity(TeamConfig teamConfig) {
         return TeamConfig.builder()
-				.configType(teamConfig.getConfigType())
-				.configTarget(teamConfig.getConfigTarget())
+				.teamSeq(teamConfig.getTeamSeq())
+				.morphs(teamConfig.getMorphs())
 				.build();
     }
 
 	public TeamConfig toEntityUpdate(TeamConfig teamConfig) {
         return TeamConfig.builder()
 				.seq(teamConfig.getSeq())
-				.configType(teamConfig.getConfigType())
-				.configTarget(teamConfig.getConfigTarget())
+				.teamSeq(teamConfig.getTeamSeq())
+				.morphs(teamConfig.getMorphs())
 				.build();
     }
 }

@@ -16,7 +16,7 @@ public class Sns extends BaseTimeEntity{
 	private Long seq;
 	
     @Column(columnDefinition = "text", nullable = false)
-	private String category;
+	private String categoryCode;
 
     @Column(columnDefinition = "text", nullable = false)
 	private String url;
@@ -37,9 +37,9 @@ public class Sns extends BaseTimeEntity{
 	private String indexStatus;
 
 	@Builder
-	public Sns(Long seq, String category, String url, String urlId, String title, String content, String author, String indexStatus) {
+	public Sns(Long seq, String categoryCode, String url, String urlId, String title, String content, String author, String indexStatus) {
 		this.seq = seq;
-        this.category = category;
+        this.categoryCode = categoryCode;
         this.url = url;
         this.urlId = urlId;
         this.title = title;
@@ -50,7 +50,7 @@ public class Sns extends BaseTimeEntity{
 
     public Sns toEntity(Sns sns) {
         return Sns.builder()
-                .category(sns.getCategory())
+                .categoryCode(sns.getCategoryCode())
                 .url(sns.getUrl())
                 .urlId(sns.getUrlId())
                 .title(sns.getTitle())
@@ -63,7 +63,7 @@ public class Sns extends BaseTimeEntity{
     public Sns toEntityUpdate(Sns sns) {
         return Sns.builder()
                 .seq(sns.getSeq())
-                .category(sns.getCategory())
+                .categoryCode(sns.getCategoryCode())
                 .url(sns.getUrl())
                 .urlId(sns.getUrlId())
                 .title(sns.getTitle())
