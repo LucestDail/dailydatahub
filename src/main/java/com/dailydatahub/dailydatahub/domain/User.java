@@ -6,6 +6,7 @@ import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 @Entity
 @ToString
 @Table(indexes = @Index(name = "idxSeq", columnList = "seq"))

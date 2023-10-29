@@ -1,34 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>TeaMetaStorage</title>
-	<!-- Core theme CSS (includes Bootstrap)-->
-	<link href="/css/style.css" rel="stylesheet" />
-	<link href="/css/login.css" rel="stylesheet" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> 
-</head>
-
-<body>
-	<section class="conA">
-		<div class="container">
-			<h1>
-				Daily Data Hub
-			</h1><br>
-			<input type="text" placeholder="아이디를 입력하세요" id="id" class="form-control bg-transparent" style="color:white; font-weight:bold;" onKeypress="javascript:if(event.keyCode==13) {document.getElementById('btnmemberlogin').click();}"><br>
-			<input type="password" placeholder="비밀번호를 입력하세요" id="password" class="form-control bg-transparent" style="color:white; font-weight:bold;" onKeypress="javascript:if(event.keyCode==13) {document.getElementById('btnmemberlogin').click();}"><br>
-			<input type="button" value="로그인" id="btnmemberlogin" class="btn bg-transparent" style="color:white; font-weight:bold;">
-			<a href="register" class="btn bg-transparent" style="color:white; font-weight:bold;">회원가입</a>
-		</div>
-	</section>
-	<!--custom js 추가-->
-	<script src="/js/scripts.js"></script>
-	<script src="/js/main.js"></script>
-</body>
-
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>TeaMetaStorage</title>
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link href="/css/custom.css" rel="stylesheet" />
+		<link href="/css/sb-admin-2.css" rel="stylesheet" />
+		<link href="/css/style.css" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> 
+	</head>
+	<body>
+		<section class="conA">
+			<div class="container">
+				<!-- Outer Row -->
+				<div class="row justify-content-center">
+					<div class="col-xl-10 col-lg-12 col-md-9">
+						<div class="card o-hidden border-0 shadow-lg my-5">
+							<div class="card-body p-0">
+								<!-- Nested Row within Card Body -->
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="p-5">
+											<div class="text-center">
+												<h1 class="h4 text-gray-900 mb-4">Daily Data Hub</h1>
+											</div>
+											<form class="user">
+												<div class="form-group">
+													<input type="text" class="form-control form-control-user" id="id" name="id" placeholder="아이디 입력">
+												</div>
+												<div class="form-group">
+													<input type="password" class="form-control form-control-user" id="password" name="password" placeholder="패스워드 입력">
+												</div>
+												<input id="btnLogin" type="button" class="btn btn-primary btn-user btn-block" value="로그인">
+												<script>
+													$(".form-control").on("keyup",function(key){
+														if(key.keyCode==13) {
+															$('#btnLogin').click();
+														}
+													});
+													$('#btnLogin').on('click', function(e) {
+														if($('#id').val() == "" ){
+															toastr.warning('아이디를 입력하세요');
+															$('#id').focus();
+															return;
+														}else if($('#password').val() == "" ){
+															toastr.warning('비밀번호를 입력하세요')
+															$('#password').focus();
+															return;
+														}else{
+																var data={
+																id:$('#id').val(),
+																password:$('#password').val()
+															}
+															$.ajax({
+																type:'POST',
+																url:"/loginUser",
+																dataType: "text",
+																contentType:'application/json; charset=utf-8',
+																data:JSON.stringify(data),
+																success : function(data){
+																	var responseData = JSON.parse(data);
+																	if(Boolean(responseData.error)){
+																		toastr.error(JSON.parse(data).errorReason);
+																	}else{
+																		toastr.success("로그인 성공! 3초 후 메인 화면으로 이동합니다.");
+																		setTimeout(function() { 
+																			window.location.href="/main";
+																		}, 3000);
+																	}
+																},
+																error : function(error){
+																	toastr.warning(JSON.parse(error).errorReason);
+																	console.log(JSON.stringify(error));
+																}
+															})
+														}
+													});
+												</script>
+											</form>
+											<hr>
+											<div class="text-center">
+												<a class="small" href="forgotPassword">비밀번호 초기화</a>
+											</div>
+											<div class="text-center">
+												<a class="small" href="register">계정 생성</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--custom js 추가-->
+		<script src="/js/scripts.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
 </html>

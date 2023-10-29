@@ -31,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		try{
 			User sessionUser = (User) request.getSession().getAttribute("user");
 			if(Objects.isNull(sessionUser)) {
-				modelAndView.setViewName("main/index.html");
+				modelAndView.setViewName("main/login.html");
 			}
 		}catch(Exception e){
 			e.printStackTrace();

@@ -5,7 +5,7 @@
 
 main = {
     init : function () {
-    	console.log("init activated");
+    	// console.log("init activated");
         var _this = this;
         $('#btnmetasearch').on('click', function () {
             _this.msearch();

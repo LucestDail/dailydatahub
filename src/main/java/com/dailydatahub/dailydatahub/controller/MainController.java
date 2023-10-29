@@ -23,8 +23,13 @@ public class MainController {
 		return new ModelAndView("main/main.html");
 	}
 
-	// @GetMapping("/error")
-	// public ModelAndView error(Model model) {
-	// 	return new ModelAndView("main/error.html");
-	// }
+	@GetMapping("/register")
+	public ModelAndView register(Model model) {
+		return new ModelAndView("main/register.html");
+	}
+
+	@GetMapping("/forgotPassword")
+	public ModelAndView forgotPassword(Model model) {
+		return new ModelAndView("main/forgotPassword.html");
+	}
 }
