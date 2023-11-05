@@ -4,32 +4,248 @@
       layout:decorate="~{layouts/layout}">
 <meta charset="utf-8">
 <th:block layout:fragment="content">
-    <h1 class="mt-4">Meta Search</h1>
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">당신의 정보가 시작하는 데일리 데이터 허브입니다</h1>
+            </div>
+            <!-- Content Row -->
+            <div class="row">
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">전체 수집된 뉴스</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{news_count}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="newsraw" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
 
-	<p>
-    <table class="table">
-        <tr>
-            <th>
-                검색키워드
-            </th>
-            <td>
-                 <input type="text" id="searchtarget" class="form-control">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="button" value = "meta 검색" id="btnmetasearch" class="btn btn-primary">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                
-    <a href="insertMeta" class="btn btn-primary">메타데이터 등록</a>
-    <a href="getAllMeta" class="btn btn-primary">전체 메타데이터 보기</a>
-    <input type="button" class="btn btn-primary" value="돌아가기" onclick="location.href='main'">
-            </td>
-        </tr>
-    </table>
-	</p>
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        전체 분석된 뉴스 건수</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{news_analysis_count}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-newspaper fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="analysisraw" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">뉴스 분석 상태
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{news_analysis_rate}}%</div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2">
+                                                <div class="progress-bar bg-info" role="progressbar"
+                                                    style="width: {{news_analysis_rate}}%" aria-valuenow="{{news_analysis_rate}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="analysisraw" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        오늘/어제 수집된 신규 뉴스</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{today_news_count}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="newsraw" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Content Row -->
+            <div class="row">
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">키워드 시계열 분석</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        사용자가 설정한 키워드를 중심으로 시간에 따른 데이터 변화를 확인합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-chart-area fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="keywordtimedashboard" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">데이터 발생 현황</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        데이터 발생 현황을 확인합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-chart-area fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="newsdashboard" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">종합 대시보드</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        사용자가 설정한 옵션을 기반으로 전체적인 데이터를 확인합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-chart-area fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="maindashboard" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">dcinside 대시보드</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        (TEST 중인 기능입니다) 디씨인사이드 베스트 게시글 데이터를 확인합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-chart-area fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="dcinsidedashboard" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">제외 키워드 열람</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        제외된 키워드를 확인합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="excludedkeyword" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">제외 키워드 등록</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        제외 키워드를 등록하여 분섣 데이터를 관리합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="excludedkeywordadd" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">원본 데이터 열람</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        분석 기준의 원본 데이터를 열람합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="newsraw" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">분석 데이터 열람</div>
+                                    <div class="text-xs font-weight-bold text-gray-500 text-uppercase mb-1">
+                                        형태소 단위로 분석된 기반 데이터를 확인합니다.</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                            <a href="analysisraw" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
 </th:block>
 </html>

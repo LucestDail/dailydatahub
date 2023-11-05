@@ -2,15 +2,83 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 <th:block th:fragment="sidebarFragment">
-	<div class="border-end bg-white" id="sidebar-wrapper">
-		<div class="sidebar-heading border-bottom list-group-item-light">Team Meta Storage</div>
-		<div class="list-group list-group-flush">
-			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="/main">메인</a>
-			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="/board/work">업무 게시판</a>
-			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="/board/team">팀 게시판</a>
-			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="/qna/usually">문의 사항</a>
-		</div>
-	</div>
-</th:block>
+	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+		<!-- Sidebar - Brand -->
+		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index">
+			<div class="sidebar-brand-icon rotate-n-15">
+				<i class="fas fa-newspaper"></i>
+			</div>
+			<div class="sidebar-brand-text mx-3">Daily News</div>
+		</a>
+		<hr class="sidebar-divider my-0">
+		<li class="nav-item active">
+			<a class="nav-link" href="/data/min">
+				<i class="fas fa-fw fa-tachometer-alt"></i>
+				<span>종합 대시보드</span></a>
+		</li>
+		<hr class="sidebar-divider">
+		<div class="sidebar-heading">
+			사이트 기능 관련
+		</div>
+		<li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo">
+				<i class="fas fa-fw fa-cog"></i>
+				<span>기능 설정</span>
+			</a>
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					<h6 class="collapse-header">기능 관리:</h6>
+					<a class="collapse-item" href="/data/excludedkeyword">제외 키워드 열람</a>
+					<a class="collapse-item" href="/data/excludedkeywordadd">제외 키워드 등록</a>
+				</div>
+			</div>
+		</li>
+		<hr class="sidebar-divider">
+		<div class="sidebar-heading">
+			종합 대시보드
+		</div>
+		<li class="nav-item">
+			<a class="nav-link" href="/data/keywordtimedashboard">
+				<i class="fas fa-fw fa-chart-area"></i>
+				<span>키워드 시계열 분석</span></a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="newsdashboard">
+				<i class="fas fa-fw fa-table"></i>
+				<span>데이터 발생 현황</span></a>
+		</li>
+		<hr class="sidebar-divider">
+		<div class="sidebar-heading">
+			기타 정보
+		</div>
+		<li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages">
+				<i class="fas fa-fw fa-folder"></i>
+				<span>사이트 정보</span>
+			</a>
+			<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					<h6 class="collapse-header">관리 정책</h6>
+					<a class="collapse-item" href="datapolicy">데이터 정책</a>
+					<a class="collapse-item" href="sitepolicy">운영관리 정책</a>
+					<h6 class="collapse-header">데이터</h6>
+					<a class="collapse-item" href="newsraw">원본 데이터 열람</a>
+					<a class="collapse-item" href="analysisraw">분석 데이터 열람</a>
+					<h6 class="collapse-header">테스트 데이터</h6>
+					<a class="collapse-item" href="twitterraw">트위터 데이터 열람</a>
+					<a class="collapse-item" href="instagramraw">인스타 데이터 열람</a>
+					<a class="collapse-item" href="dcinsideraw">디씨 데이터 열람</a>
+					<a class="collapse-item" href="youtuberaw">유튜브 데이터 열람</a>
+				</div>
+			</div>
+		</li>
+		<hr class="sidebar-divider d-none d-md-block">
+		<div class="text-center d-none d-md-inline">
+			<button class="rounded-circle border-0" id="sidebarToggle"></button>
+		</div>
+	</ul>
+</th:block>
 </html>
