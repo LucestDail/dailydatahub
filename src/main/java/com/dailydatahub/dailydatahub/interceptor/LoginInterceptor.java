@@ -34,7 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				modelAndView.setViewName("main/login.html");
 			}
 		}catch(Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }
