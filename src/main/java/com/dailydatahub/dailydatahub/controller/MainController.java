@@ -1,10 +1,14 @@
 package com.dailydatahub.dailydatahub.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.dailydatahub.dailydatahub.domain.MainCountDashboard;
+import com.dailydatahub.dailydatahub.service.MainService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,6 +17,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainController {
 
+
+	@Autowired
+	private MainService mainService;
+
+
     @GetMapping("/")
 	public ModelAndView login(Model model) {
 		return new ModelAndView("main/login.html");
@@ -20,7 +29,11 @@ public class MainController {
 
 	@GetMapping("/main")
 	public ModelAndView main(Model model) {
-		return new ModelAndView("main/main.html");
+		ModelAndView mav = new ModelAndView();
+		MainCountDashboard mainCountDashboard = mainService.selectMainCountDashboard().get();
+		mav.addObject(mainCountDashboard);
+		mav.setViewName("main/main.html");
+		return mav;
 	}
 
 	@GetMapping("/register")

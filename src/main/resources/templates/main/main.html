@@ -23,7 +23,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">전체 수집된 뉴스</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{news_count}}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span th:text="${mainCountDashboard.totalSnsCount}"></span></div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa fa-calendar fa-2x text-gray-300"></i>
@@ -42,7 +42,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         전체 분석된 뉴스 건수</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{news_analysis_count}}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span th:text="${mainCountDashboard.totalSnsAnalysisCount}"></span></div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa fa-newspaper fa-2x text-gray-300"></i>
@@ -60,14 +60,14 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">뉴스 분석 상태
                                     </div>
-                                    <div class="row no-gutters align-items-center">
+                                    <div class="row no-gutters align-items-center" style="margin-left: 5%;">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">90%</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span th:text="${mainCountDashboard.totalSnsAnalysisRatio} + '%'"></span></div>
                                         </div>
                                         <div class="col">
                                             <div class="progress progress-sm mr-2">
                                                 <div class="progress-bar bg-info" role="progressbar"
-                                                    style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    th:style="'width:' + ${mainCountDashboard.totalSnsAnalysisRatio} + '%'" th:aria-valuenow="'${mainCountDashboard.totalSnsAnalysisRatio}'" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                         오늘/어제 수집된 신규 뉴스</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{today_news_count}}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span th:text="${mainCountDashboard.todaySnsCount}"></span></div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa fa-comments fa-2x text-gray-300"></i>
