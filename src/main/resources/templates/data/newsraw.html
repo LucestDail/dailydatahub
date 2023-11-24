@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<meta charset="utf-8">
+<th:block layout:fragment="content">
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+		<div class="container-fluid">
+			<!-- Page Heading -->
+			<div class="d-sm-flex align-items-center justify-content-between mb-4">
+				<!-- <h1 class="h3 mb-0 text-gray-800">데이터 정보 {% if request.GET.keyword %} [검색결과 = {{request.GET.keyword}}] {% endif %}</h1> -->
+			</div>
+			<!-- Content Row -->
+			<div class="row">
+				<!-- <span th:text="${news}"></span> -->
+				<form action="/data/newsraw" method="get">
+					<div class="form-group">
+					  <label for="keyword">데이터 중 검색하고 싶은 키워드를 입력 후 엔터를 눌러주세요!</label>
+					  <input type="text" class="form-control" id="keyword" name="keyword" aria-describedby="keywordHelp" placeholder="키워드 입력" value="">
+						<!-- {% if related_keyword|length > 0%}
+						<small id="keywordhelp" class="form-text text-muted">연관된 검색어가 발견되었습니다! [단어(연관비율)]</small>
+					  {% for key, value in related_keyword.items %}
+						<a href="newsraw?keyword={{key}}">[{{key}}<small>({{value}}%)</small>]</a>
+						{% endfor %}
+						{% endif %} -->
+					</div>
+				</form>
+			</div>
+			<div class="row">
+				<div class="accordion" id="accordionExample" style="width: 100%;">
+				  <div th:each="news:${newslist}" class="card">
+					<div class="card-header" th:id="'heading' + ${news.id}">
+					  <h5 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse" th:data-target="'#collapse' + ${news.id}" aria-expanded="true" th:aria-controls="'collapse' + ${news.id}">
+							[[${news.news_createdt}]][[${news.news_title}]]([[${news.news_from}]])
+						</button>
+					  </h5>
+					</div>
+					<div th:id="'collapse' + ${news.id}" class="collapse" th:aria-labelledby="'heading' + ${news.id}" data-parent="#accordionExample">
+					  <div class="card-body" th:utext="${news.news_contents_raw}">
+						  <a th:href='${news.etc1}'>원본기사 보기</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+
+
+			<div class="row" style="width: 100%; justify-content: center;">
+				<div class="pagination" style="width: 100%; justify-content: center;">
+					<span class="step-links">
+						<!-- {% if page_current > 1 %}
+							<a href="?page={{ page_previous }}{% if request.GET.keyword %}&keyword={{search_keyword}}{% endif %}">previous</a>
+						{% endif %}
+	
+						<span class="current">
+							Page {{ page_current }} of {{ page_total }}.
+						</span>
+	
+						{% if page_next < page_total or page_next == page_total %}
+	
+							<a href="?page={{ page_next }}{% if request.GET.keyword %}&keyword={{search_keyword}}{% endif %}">next</a>
+						{% endif %} -->
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- End of Main Content -->
+</th:block>
+</html>
