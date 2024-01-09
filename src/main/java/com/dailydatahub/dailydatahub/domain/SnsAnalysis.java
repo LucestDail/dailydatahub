@@ -18,10 +18,12 @@ public class SnsAnalysis extends BaseTimeEntity{
     @Column(columnDefinition = "text", nullable = false)
 	private String category;
 
-    @Column(columnDefinition = "text", nullable = false)
+    // @Column(columnDefinition = "text", nullable = false)
+    @Column(columnDefinition = "text")
 	private String url;
 
-    @Column(columnDefinition = "text", nullable = false)
+    // @Column(columnDefinition = "text", nullable = false)
+    @Column(columnDefinition = "text")
 	private String urlId;
 
     @Column(columnDefinition = "text", nullable = false)
@@ -33,7 +35,8 @@ public class SnsAnalysis extends BaseTimeEntity{
     @Column(columnDefinition = "text", nullable = false)
 	private String author;
 
-    @Column(columnDefinition = "text", nullable = false)
+    // @Column(columnDefinition = "text", nullable = false)
+    @Column(columnDefinition = "text")
 	private String indexStatus;
 
 	@Builder

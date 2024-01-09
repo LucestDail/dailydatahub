@@ -17,10 +17,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainController {
 
-
 	@Autowired
 	private MainService mainService;
-
 
     @GetMapping("/")
 	public ModelAndView login(Model model) {

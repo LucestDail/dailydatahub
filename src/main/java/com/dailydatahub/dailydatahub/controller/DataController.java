@@ -39,6 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dailydatahub.dailydatahub.domain.MainCountDashboard;
 import com.dailydatahub.dailydatahub.domain.News;
 import com.dailydatahub.dailydatahub.module.ElasticSearchComponent;
+import com.dailydatahub.dailydatahub.service.MainService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +53,9 @@ public class DataController {
 
 	@Autowired
 	private ElasticSearchComponent elasticSearchComponent;
+
+	@Autowired
+	private MainService mainService;
 
     @RequestMapping(value = "/newsraw", method = RequestMethod.GET)
 	public ModelAndView getNewsraw(Model model
@@ -95,6 +99,16 @@ public class DataController {
 		mav.setViewName("data/newsraw.html");
 		return mav;
 	}
+
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public ModelAndView getMainData (HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		MainCountDashboard mainCountDashboard = mainService.selectMainCountDashboard().get();
+		mav.addObject(mainCountDashboard);
+		mav.setViewName("data/main.html");
+		return mav;
+	}
+	
 
     
 }
